@@ -1,5 +1,7 @@
+import type { TreeNode, TreeTableNode } from '@/types/Node';
+
 export const NodeService = {
-    getTreeNodesData() {
+    getTreeNodesData(): TreeNode[] {
         return [
             {
                 key: '0',
@@ -68,7 +70,7 @@ export const NodeService = {
         ];
     },
 
-    getTreeTableNodesData() {
+    getTreeTableNodesData(): TreeTableNode[] {
         return [
             {
                 key: '0',
@@ -421,11 +423,11 @@ export const NodeService = {
         ];
     },
 
-    getTreeTableNodes() {
-        return Promise.resolve(this.getTreeTableNodesData());
-    },
-
     getTreeNodes() {
         return Promise.resolve(this.getTreeNodesData());
+    },
+
+    getTreeTableNodes() {
+        return Promise.resolve(this.getTreeTableNodesData());
     }
 };

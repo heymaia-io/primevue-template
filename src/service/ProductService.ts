@@ -1,5 +1,7 @@
+import type { Product } from '@/types/Product';
+
 export const ProductService = {
-    getProductsData() {
+        getProductsData(): Product[] {
         return [
             {
                 id: '1000',
@@ -364,7 +366,7 @@ export const ProductService = {
         ];
     },
 
-    getProductsWithOrdersData() {
+        getProductsWithOrdersData(): Product[] {
         return [
             {
                 id: '1000',
@@ -1206,7 +1208,7 @@ export const ProductService = {
         return Promise.resolve(this.getProductsData().slice(0, 10));
     },
 
-    getProducts() {
+        getProducts(): Promise<Product[]> {
         return Promise.resolve(this.getProductsData());
     },
 
@@ -1214,7 +1216,7 @@ export const ProductService = {
         return Promise.resolve(this.getProductsWithOrdersData().slice(0, 10));
     },
 
-    getProductsWithOrders() {
+        getProductsWithOrders(): Promise<Product[]> {
         return Promise.resolve(this.getProductsWithOrdersData());
     }
 };

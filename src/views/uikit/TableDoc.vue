@@ -1,19 +1,24 @@
-<script setup>
+<script setup lang="ts">
 import { CustomerService } from '@/service/CustomerService';
 import { ProductService } from '@/service/ProductService';
+import type { Customer } from '@/types/Customer';
+import type { Product } from '@/types/Product';
 import { FilterMatchMode, FilterOperator } from '@primevue/core/api';
+
+import type { Representative } from '@/types/Representative';
+import type { DataTableFilterMeta } from 'primevue/datatable';
 import { onBeforeMount, reactive, ref } from 'vue';
 
-const customers1 = ref(null);
-const customers2 = ref(null);
-const customers3 = ref(null);
-const filters1 = ref(null);
-const loading1 = ref(null);
+const customers1 = ref<Customer[] | null>(null);
+const customers2 = ref<Customer[] | null>(null);
+const customers3 = ref<Customer[] | null>(null);
+const filters1 = ref<DataTableFilterMeta>({});
+const loading1 = ref<boolean>(true);
 const balanceFrozen = ref(false);
-const products = ref(null);
-const expandedRows = ref([]);
-const statuses = reactive(['unqualified', 'qualified', 'new', 'negotiation', 'renewal', 'proposal']);
-const representatives = reactive([
+const products = ref<Product[] | null>(null);
+const expandedRows = ref<Product[] | null>(null);
+const statuses = ref<string[]>(['unqualified', 'qualified', 'new', 'negotiation', 'renewal', 'proposal']);
+const representatives = reactive<Representative[]>([
     { name: 'Amy Elsner', image: 'amyelsner.png' },
     { name: 'Anna Fali', image: 'annafali.png' },
     { name: 'Asiya Javayant', image: 'asiyajavayant.png' },
@@ -26,7 +31,7 @@ const representatives = reactive([
     { name: 'XuXue Feng', image: 'xuxuefeng.png' }
 ]);
 
-function getOrderSeverity(order) {
+const getOrderSeverity = (order: any): 'success' | 'danger' | 'warn' | 'info' => {
     switch (order.status) {
         case 'DELIVERED':
             return 'success';
@@ -41,11 +46,11 @@ function getOrderSeverity(order) {
             return 'info';
 
         default:
-            return null;
+            return 'info';
     }
 }
 
-function getSeverity(status) {
+const getSeverity = (status: string): 'danger' | 'success' | 'info' | 'warn' => {
     switch (status) {
         case 'unqualified':
             return 'danger';
@@ -60,11 +65,14 @@ function getSeverity(status) {
             return 'warn';
 
         case 'renewal':
-            return null;
+            return 'info';
+
+        default:
+            return 'info';
     }
 }
 
-function getStockSeverity(product) {
+const getStockSeverity = (product: Product): 'success' | 'warn' | 'danger' | 'info' => {
     switch (product.inventoryStatus) {
         case 'INSTOCK':
             return 'success';
@@ -76,7 +84,7 @@ function getStockSeverity(product) {
             return 'danger';
 
         default:
-            return null;
+            return 'info';
     }
 }
 
@@ -93,7 +101,10 @@ onBeforeMount(() => {
     initFilters1();
 });
 
-function initFilters1() {
+const clearFilter1 = () => {
+    initFilters1();
+};
+const initFilters1 = () => {
     filters1.value = {
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
         name: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
@@ -107,19 +118,26 @@ function initFilters1() {
     };
 }
 
-function expandAll() {
-    expandedRows.value = products.value.reduce((acc, p) => (acc[p.id] = true) && acc, {});
+const expandAll = () => {
+    expandedRows.value = products.value ? products.value.filter((p) => p.id) : [];
 }
 
-function collapseAll() {
-    expandedRows.value = null;
+const collapseAll = () => {
+    expandedRows.value = [];
 }
 
-function formatCurrency(value) {
+const formatCurrency = (value: number) => {
     return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
 }
 
-function formatDate(value) {
+const formatDate = (value: string | Date) => {
+        if (typeof value === 'string') {
+        return new Date(value).toLocaleDateString('en-US', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric'
+        });
+    }
     return value.toLocaleDateString('en-US', {
         day: '2-digit',
         month: '2-digit',
@@ -127,8 +145,8 @@ function formatDate(value) {
     });
 }
 
-function calculateCustomerTotal(name) {
-    let total = 0;
+const calculateCustomerTotal = (name: string) => {
+    let total: number = 0;
     if (customers3.value) {
         for (let customer of customers3.value) {
             if (customer.representative.name === name) {
@@ -153,13 +171,12 @@ function calculateCustomerTotal(name) {
             v-model:filters="filters1"
             filterDisplay="menu"
             :loading="loading1"
-            :filters="filters1"
             :globalFilterFields="['name', 'country.name', 'representative.name', 'balance', 'status']"
             showGridlines
         >
             <template #header>
                 <div class="flex justify-between">
-                    <Button type="button" icon="pi pi-filter-slash" label="Clear" outlined @click="clearFilter()" />
+                    <Button type="button" icon="pi pi-filter-slash" label="Clear" outlined @click="clearFilter1()" />
                     <IconField>
                         <InputIcon>
                             <i class="pi pi-search" />
@@ -175,7 +192,7 @@ function calculateCustomerTotal(name) {
                     {{ data.name }}
                 </template>
                 <template #filter="{ filterModel }">
-                    <InputText v-model="filterModel.value" type="text" placeholder="Search by name" />
+                    <InputText v-model="(filters1['name'] as any).constraints[0].value" type="text" placeholder="Search by name" />
                 </template>
             </Column>
             <Column header="Country" filterField="country.name" style="min-width: 12rem">
@@ -186,7 +203,7 @@ function calculateCustomerTotal(name) {
                     </div>
                 </template>
                 <template #filter="{ filterModel }">
-                    <InputText v-model="filterModel.value" type="text" placeholder="Search by country" />
+                    <InputText v-model="(filters1['country.name'] as any).constraints[0].value" type="text" placeholder="Search by country" />
                 </template>
                 <template #filterclear="{ filterCallback }">
                     <Button type="button" icon="pi pi-times" @click="filterCallback()" severity="secondary"></Button>

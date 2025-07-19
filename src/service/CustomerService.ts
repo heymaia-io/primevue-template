@@ -1,5 +1,7 @@
+import type { Customer } from '@/types/Customer';
+
 export const CustomerService = {
-    getData() {
+        getData(): Customer[] {
         return [
             {
                 id: 1000,
@@ -9020,7 +9022,7 @@ export const CustomerService = {
         return Promise.resolve(this.getData());
     },
 
-    getCustomers(params) {
+        getCustomers(params?: any): Promise<Customer[]> {
         const queryParams = params
             ? Object.keys(params)
                   .map((k) => encodeURIComponent(k) + '=' + encodeURIComponent(params[k]))
