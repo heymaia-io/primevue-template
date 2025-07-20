@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { NodeService } from '@/service/NodeService';
 import { onMounted, ref } from 'vue';
 
@@ -16,15 +16,33 @@ onMounted(() => {
 <template>
     <div class="card">
         <div class="font-semibold text-xl">Tree</div>
-        <Tree :value="treeValue" selectionMode="checkbox" v-model:selectionKeys="selectedTreeValue"></Tree>
+        <Tree
+            :value="treeValue"
+            selectionMode="checkbox"
+            v-model:selectionKeys="selectedTreeValue"
+        ></Tree>
     </div>
 
     <div class="card">
         <div class="font-semibold text-xl mb-4">TreeTable</div>
-        <TreeTable :value="treeTableValue" selectionMode="checkbox" v-model:selectionKeys="selectedTreeTableValue">
-            <Column field="name" header="Name" :expander="true"></Column>
-            <Column field="size" header="Size"></Column>
-            <Column field="type" header="Type"></Column>
+        <TreeTable
+            :value="treeTableValue"
+            selectionMode="checkbox"
+            v-model:selectionKeys="selectedTreeTableValue"
+        >
+            <Column
+                field="name"
+                header="Name"
+                :expander="true"
+            ></Column>
+            <Column
+                field="size"
+                header="Size"
+            ></Column>
+            <Column
+                field="type"
+                header="Type"
+            ></Column>
         </TreeTable>
     </div>
 </template>

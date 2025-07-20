@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { useToast } from 'primevue/usetoast';
 import { ref } from 'vue';
 
@@ -30,20 +30,49 @@ function showError() {
             <div class="card">
                 <div class="font-semibold text-xl mb-4">Toast</div>
                 <div class="flex flex-wrap gap-2">
-                    <Button @click="showSuccess()" label="Success" severity="success" />
-                    <Button @click="showInfo()" label="Info" severity="info" />
-                    <Button @click="showWarn()" label="Warn" severity="warn" />
-                    <Button @click="showError()" label="Error" severity="danger" />
+                    <Button
+                        @click="showSuccess()"
+                        label="Success"
+                        severity="success"
+                    />
+                    <Button
+                        @click="showInfo()"
+                        label="Info"
+                        severity="info"
+                    />
+                    <Button
+                        @click="showWarn()"
+                        label="Warn"
+                        severity="warn"
+                    />
+                    <Button
+                        @click="showError()"
+                        label="Error"
+                        severity="danger"
+                    />
                 </div>
 
                 <div class="font-semibold text-xl mt-4 mb-4">Inline</div>
                 <div class="flex flex-wrap mb-4 gap-2">
-                    <InputText v-model="username" placeholder="Username" aria-label="username" invalid />
+                    <InputText
+                        v-model="username"
+                        placeholder="Username"
+                        aria-label="username"
+                        invalid
+                    />
                     <Message severity="error">Username is required</Message>
                 </div>
                 <div class="flex flex-wrap gap-2">
-                    <InputText v-model="email" placeholder="Email" aria-label="email" invalid />
-                    <Message severity="error" icon="pi pi-times-circle" />
+                    <InputText
+                        v-model="email"
+                        placeholder="Email"
+                        aria-label="email"
+                        invalid
+                    />
+                    <Message
+                        severity="error"
+                        icon="pi pi-times-circle"
+                    />
                 </div>
             </div>
         </div>
@@ -59,8 +88,15 @@ function showError() {
                     <Message severity="contrast">Contrast Message</Message>
                 </div>
 
-                <transition-group name="p-message" tag="div">
-                    <Message v-for="msg of message" :severity="msg.severity" :key="msg.content">{{ msg.content }}</Message>
+                <transition-group
+                    name="p-message"
+                    tag="div"
+                >
+                    <Message
+                        v-for="msg of message"
+                        :severity="msg.severity"
+                        :key="msg.content"
+                    >{{ msg.content }}</Message>
                 </transition-group>
             </div>
         </div>

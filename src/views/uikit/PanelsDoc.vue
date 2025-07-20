@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue';
 
 const items = ref([
@@ -37,9 +37,23 @@ function toggle() {
             <div class="font-semibold text-xl mb-4">Toolbar</div>
             <Toolbar>
                 <template #start>
-                    <Button icon="pi pi-plus" class="mr-2" severity="secondary" text />
-                    <Button icon="pi pi-print" class="mr-2" severity="secondary" text />
-                    <Button icon="pi pi-upload" severity="secondary" text />
+                    <Button
+                        icon="pi pi-plus"
+                        class="mr-2"
+                        severity="secondary"
+                        text
+                    />
+                    <Button
+                        icon="pi pi-print"
+                        class="mr-2"
+                        severity="secondary"
+                        text
+                    />
+                    <Button
+                        icon="pi pi-upload"
+                        severity="secondary"
+                        text
+                    />
                 </template>
 
                 <template #center>
@@ -51,7 +65,12 @@ function toggle() {
                     </IconField>
                 </template>
 
-                <template #end> <SplitButton label="Save" :model="items"></SplitButton></template>
+                <template #end>
+                    <SplitButton
+                        label="Save"
+                        :model="items"
+                    ></SplitButton>
+                </template>
             </Toolbar>
         </div>
 
@@ -64,8 +83,19 @@ function toggle() {
                             <AccordionHeader>Header I</AccordionHeader>
                             <AccordionContent>
                                 <p class="m-0">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                    commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                                    eiusmod
+                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                                    minim
+                                    veniam, quis nostrud exercitation ullamco laboris nisi ut
+                                    aliquip ex ea
+                                    commodo consequat. Duis aute irure dolor in reprehenderit in
+                                    voluptate
+                                    velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                                    sint
+                                    occaecat cupidatat non proident, sunt in culpa qui officia
+                                    deserunt
+                                    mollit
                                     anim id est laborum.
                                 </p>
                             </AccordionContent>
@@ -74,8 +104,17 @@ function toggle() {
                             <AccordionHeader>Header II</AccordionHeader>
                             <AccordionContent>
                                 <p class="m-0">
-                                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
-                                    explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Consectetur, adipisci velit, sed quia non
+                                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+                                    accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
+                                    quae ab
+                                    illo inventore veritatis et quasi architecto beatae vitae dicta
+                                    sunt
+                                    explicabo. Nemo enim ipsam voluptatem quia voluptas sit
+                                    aspernatur aut
+                                    odit aut fugit, sed quia consequuntur magni dolores eos qui
+                                    ratione
+                                    voluptatem sequi nesciunt. Consectetur, adipisci velit, sed quia
+                                    non
                                     numquam eius modi.
                                 </p>
                             </AccordionContent>
@@ -84,8 +123,18 @@ function toggle() {
                             <AccordionHeader>Header III</AccordionHeader>
                             <AccordionContent>
                                 <p class="m-0">
-                                    At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique
-                                    sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil
+                                    At vero eos et accusamus et iusto odio dignissimos ducimus qui
+                                    blanditiis praesentium voluptatum deleniti atque corrupti quos
+                                    dolores
+                                    et quas molestias excepturi sint occaecati cupiditate non
+                                    provident,
+                                    similique
+                                    sunt in culpa qui officia deserunt mollitia animi, id est
+                                    laborum et
+                                    dolorum fuga. Et harum quidem rerum facilis est et expedita
+                                    distinctio.
+                                    Nam libero tempore, cum soluta nobis est eligendi optio cumque
+                                    nihil
                                     impedit quo minus.
                                 </p>
                             </AccordionContent>
@@ -103,22 +152,52 @@ function toggle() {
                         <TabPanels>
                             <TabPanel value="0">
                                 <p class="m-0">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                    commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                                    eiusmod
+                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                                    minim
+                                    veniam, quis nostrud exercitation ullamco laboris nisi ut
+                                    aliquip ex ea
+                                    commodo consequat. Duis aute irure dolor in reprehenderit in
+                                    voluptate
+                                    velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                                    sint
+                                    occaecat cupidatat non proident, sunt in culpa qui officia
+                                    deserunt
+                                    mollit
                                     anim id est laborum.
                                 </p>
                             </TabPanel>
                             <TabPanel value="1">
                                 <p class="m-0">
-                                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
-                                    explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Consectetur, adipisci velit, sed quia non
+                                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+                                    accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
+                                    quae ab
+                                    illo inventore veritatis et quasi architecto beatae vitae dicta
+                                    sunt
+                                    explicabo. Nemo enim ipsam voluptatem quia voluptas sit
+                                    aspernatur aut
+                                    odit aut fugit, sed quia consequuntur magni dolores eos qui
+                                    ratione
+                                    voluptatem sequi nesciunt. Consectetur, adipisci velit, sed quia
+                                    non
                                     numquam eius modi.
                                 </p>
                             </TabPanel>
                             <TabPanel value="2">
                                 <p class="m-0">
-                                    At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique
-                                    sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil
+                                    At vero eos et accusamus et iusto odio dignissimos ducimus qui
+                                    blanditiis praesentium voluptatum deleniti atque corrupti quos
+                                    dolores
+                                    et quas molestias excepturi sint occaecati cupiditate non
+                                    provident,
+                                    similique
+                                    sunt in culpa qui officia deserunt mollitia animi, id est
+                                    laborum et
+                                    dolorum fuga. Et harum quidem rerum facilis est et expedita
+                                    distinctio.
+                                    Nam libero tempore, cum soluta nobis est eligendi optio cumque
+                                    nihil
                                     impedit quo minus.
                                 </p>
                             </TabPanel>
@@ -129,20 +208,42 @@ function toggle() {
             <div class="md:w-1/2 mt-6 md:mt-0">
                 <div class="card">
                     <div class="font-semibold text-xl mb-4">Panel</div>
-                    <Panel header="Header" :toggleable="true">
+                    <Panel
+                        header="Header"
+                        :toggleable="true"
+                    >
                         <p class="leading-normal m-0">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                            tempor
+                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                            quis
+                            nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+                            esse cillum
+                            dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                            proident,
+                            sunt in culpa qui officia deserunt mollit anim id est
                             laborum.
                         </p>
                     </Panel>
                 </div>
                 <div class="card">
                     <div class="font-semibold text-xl mb-4">Fieldset</div>
-                    <Fieldset legend="Legend" :toggleable="true">
+                    <Fieldset
+                        legend="Legend"
+                        :toggleable="true"
+                    >
                         <p class="leading-normal m-0">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                            tempor
+                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                            quis
+                            nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+                            esse cillum
+                            dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                            proident,
+                            sunt in culpa qui officia deserunt mollit anim id est
                             laborum.
                         </p>
                     </Fieldset>
@@ -152,15 +253,30 @@ function toggle() {
                     <template v-slot:title>
                         <div class="flex items-center justify-between mb-0">
                             <div class="font-semibold text-xl mb-4">Card</div>
-                            <Button icon="pi pi-plus" class="p-button-text" @click="toggle" />
+                            <Button
+                                icon="pi pi-plus"
+                                class="p-button-text"
+                                @click="toggle"
+                            />
                         </div>
-                        <Menu id="config_menu" ref="menuRef" :model="cardMenu" :popup="true" />
+                        <Menu
+                            id="config_menu"
+                            ref="menuRef"
+                            :model="cardMenu"
+                            :popup="true"
+                        />
                     </template>
 
                     <template v-slot:content>
                         <p class="leading-normal m-0">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                            commodo
+                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+                            esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
+                            id est
                             laborum.
                         </p>
                     </template>
@@ -174,30 +290,58 @@ function toggle() {
                 <div class="w-full md:w-5/12 flex flex-col items-center justify-center gap-3 py-5">
                     <div class="flex flex-col gap-2">
                         <label for="username">Username</label>
-                        <InputText id="username" type="text" />
+                        <InputText
+                            id="username"
+                            type="text"
+                        />
                     </div>
                     <div class="flex flex-col gap-2">
                         <label for="password">Password</label>
-                        <InputText id="password" type="password" />
+                        <InputText
+                            id="password"
+                            type="password"
+                        />
                     </div>
                     <div class="flex">
-                        <Button label="Login" icon="pi pi-user" class="w-full max-w-[17.35rem] mx-auto"></Button>
+                        <Button
+                            label="Login"
+                            icon="pi pi-user"
+                            class="w-full max-w-[17.35rem] mx-auto"
+                        ></Button>
                     </div>
                 </div>
                 <div class="w-full md:w-2/12">
-                    <Divider layout="vertical" class="!hidden md:!flex"><b>OR</b></Divider>
-                    <Divider layout="horizontal" class="!flex md:!hidden" align="center"><b>OR</b></Divider>
+                    <Divider
+                        layout="vertical"
+                        class="!hidden md:!flex"
+                    ><b>OR</b></Divider>
+                    <Divider
+                        layout="horizontal"
+                        class="!flex md:!hidden"
+                        align="center"
+                    ><b>OR</b></Divider>
                 </div>
                 <div class="w-full md:w-5/12 flex items-center justify-center py-5">
-                    <Button label="Sign Up" icon="pi pi-user-plus" severity="success" class="w-full max-w-[17.35rem] mx-auto"></Button>
+                    <Button
+                        label="Sign Up"
+                        icon="pi pi-user-plus"
+                        severity="success"
+                        class="w-full max-w-[17.35rem] mx-auto"
+                    ></Button>
                 </div>
             </div>
         </div>
 
         <div class="card">
             <div class="font-semibold text-xl mb-4">Splitter</div>
-            <Splitter style="height: 300px" class="mb-8">
-                <SplitterPanel :size="30" :minSize="10">
+            <Splitter
+                style="height: 300px"
+                class="mb-8"
+            >
+                <SplitterPanel
+                    :size="30"
+                    :minSize="10"
+                >
                     <div className="h-full flex items-center justify-center">Panel 1</div>
                 </SplitterPanel>
                 <SplitterPanel :size="70">
