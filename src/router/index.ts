@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router';
 import AppLayout from '@/layout/AppLayout.vue';
+import useAuthStore from '@/stores/auth';
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -7,99 +8,122 @@ const routes: Array<RouteRecordRaw> = [
         component: AppLayout,
         children: [
             {
-                path: '/',
+                path: '', // Default child route
+                redirect: '/dashboard'
+            },
+            {
+                path: 'dashboard',
                 name: 'dashboard',
-                component: () => import('@/views/Dashboard.vue')
+                component: () => import('@/views/Dashboard.vue'),
+                meta: { requiresAuth: true }
             },
             {
-                path: '/uikit/formlayout',
+                path: 'uikit/formlayout',
                 name: 'formlayout',
-                component: () => import('@/views/uikit/FormLayout.vue')
+                component: () => import('@/views/uikit/FormLayout.vue'),
+                meta: { requiresAuth: true }
             },
             {
-                path: '/uikit/input',
+                path: 'uikit/input',
                 name: 'input',
-                component: () => import('@/views/uikit/InputDoc.vue')
+                component: () => import('@/views/uikit/InputDoc.vue'),
+                meta: { requiresAuth: true }
             },
             {
-                path: '/uikit/button',
+                path: 'uikit/button',
                 name: 'button',
-                component: () => import('@/views/uikit/ButtonDoc.vue')
+                component: () => import('@/views/uikit/ButtonDoc.vue'),
+                meta: { requiresAuth: true }
             },
             {
-                path: '/uikit/table',
+                path: 'uikit/table',
                 name: 'table',
-                component: () => import('@/views/uikit/TableDoc.vue')
+                component: () => import('@/views/uikit/TableDoc.vue'),
+                meta: { requiresAuth: true }
             },
             {
-                path: '/uikit/list',
+                path: 'uikit/list',
                 name: 'list',
-                component: () => import('@/views/uikit/ListDoc.vue')
+                component: () => import('@/views/uikit/ListDoc.vue'),
+                meta: { requiresAuth: true }
             },
             {
-                path: '/uikit/tree',
+                path: 'uikit/tree',
                 name: 'tree',
-                component: () => import('@/views/uikit/TreeDoc.vue')
+                component: () => import('@/views/uikit/TreeDoc.vue'),
+                meta: { requiresAuth: true }
             },
             {
-                path: '/uikit/panel',
+                path: 'uikit/panel',
                 name: 'panel',
-                component: () => import('@/views/uikit/PanelsDoc.vue')
+                component: () => import('@/views/uikit/PanelsDoc.vue'),
+                meta: { requiresAuth: true }
             },
             {
-                path: '/uikit/overlay',
+                path: 'uikit/overlay',
                 name: 'overlay',
-                component: () => import('@/views/uikit/OverlayDoc.vue')
+                component: () => import('@/views/uikit/OverlayDoc.vue'),
+                meta: { requiresAuth: true }
             },
             {
-                path: '/uikit/media',
+                path: 'uikit/media',
                 name: 'media',
-                component: () => import('@/views/uikit/MediaDoc.vue')
+                component: () => import('@/views/uikit/MediaDoc.vue'),
+                meta: { requiresAuth: true }
             },
             {
-                path: '/uikit/message',
+                path: 'uikit/message',
                 name: 'message',
-                component: () => import('@/views/uikit/MessagesDoc.vue')
+                component: () => import('@/views/uikit/MessagesDoc.vue'),
+                meta: { requiresAuth: true }
             },
             {
-                path: '/uikit/file',
+                path: 'uikit/file',
                 name: 'file',
-                component: () => import('@/views/uikit/FileDoc.vue')
+                component: () => import('@/views/uikit/FileDoc.vue'),
+                meta: { requiresAuth: true }
             },
             {
-                path: '/uikit/menu',
+                path: 'uikit/menu',
                 name: 'menu',
-                component: () => import('@/views/uikit/MenuDoc.vue')
+                component: () => import('@/views/uikit/MenuDoc.vue'),
+                meta: { requiresAuth: true }
             },
             {
-                path: '/uikit/charts',
+                path: 'uikit/charts',
                 name: 'charts',
-                component: () => import('@/views/uikit/ChartDoc.vue')
+                component: () => import('@/views/uikit/ChartDoc.vue'),
+                meta: { requiresAuth: true }
             },
             {
-                path: '/uikit/misc',
+                path: 'uikit/misc',
                 name: 'misc',
-                component: () => import('@/views/uikit/MiscDoc.vue')
+                component: () => import('@/views/uikit/MiscDoc.vue'),
+                meta: { requiresAuth: true }
             },
             {
-                path: '/uikit/timeline',
+                path: 'uikit/timeline',
                 name: 'timeline',
-                component: () => import('@/views/uikit/TimelineDoc.vue')
+                component: () => import('@/views/uikit/TimelineDoc.vue'),
+                meta: { requiresAuth: true }
             },
             {
-                path: '/pages/empty',
+                path: 'pages/empty',
                 name: 'empty',
-                component: () => import('@/views/pages/Empty.vue')
+                component: () => import('@/views/pages/Empty.vue'),
+                meta: { requiresAuth: true }
             },
             {
-                path: '/pages/crud',
+                path: 'pages/crud',
                 name: 'crud',
-                component: () => import('@/views/pages/Crud.vue')
+                component: () => import('@/views/pages/Crud.vue'),
+                meta: { requiresAuth: true }
             },
             {
-                path: '/documentation',
+                path: 'documentation',
                 name: 'documentation',
-                component: () => import('@/views/pages/Documentation.vue')
+                component: () => import('@/views/pages/Documentation.vue'),
+                meta: { requiresAuth: true }
             }
         ]
     },
@@ -133,6 +157,27 @@ const routes: Array<RouteRecordRaw> = [
 const router = createRouter({
     history: createWebHistory(),
     routes
+});
+
+router.beforeEach((to, from, next) => {
+    const authStore = useAuthStore();
+    const isAuthenticated = authStore.isAuthenticated;
+
+    const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+
+    if (to.path === '/' && !isAuthenticated) {
+        return next('/auth/login');
+    }
+
+    if (requiresAuth && !isAuthenticated) {
+        return next('/auth/login');
+    }
+
+    if (to.name === 'login' && isAuthenticated) {
+        return next('/dashboard');
+    }
+
+    next();
 });
 
 export default router;
