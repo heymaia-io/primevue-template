@@ -102,7 +102,7 @@ function smoothScroll(id) {
             <Button
                 label="Login"
                 text
-                as="router-link"
+                as="RouterLink"
                 to="/auth/login"
                 rounded
             ></Button>

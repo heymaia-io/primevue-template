@@ -1,21 +1,3 @@
-<script setup>
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
-import useAuthStore from '@/stores/auth';
-import FloatingConfigurator from '@/components/FloatingConfigurator.vue';
-
-const email = ref('');
-const password = ref('');
-const checked = ref(false);
-const router = useRouter();
-const authStore = useAuthStore();
-
-const handleLogin = async () => {
-    await authStore.login(email.value, password.value);
-    router.push('/dashboard');
-};
-</script>
-
 <template>
     <FloatingConfigurator />
     <div
@@ -118,6 +100,24 @@ const handleLogin = async () => {
         </div>
     </div>
 </template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import useAuthStore from '@/stores/auth';
+import FloatingConfigurator from '@/components/FloatingConfigurator.vue';
+
+const email = ref('');
+const password = ref('');
+const checked = ref(false);
+const router = useRouter();
+const authStore = useAuthStore();
+
+const handleLogin = async () => {
+    await authStore.login(email.value, password.value);
+    router.push('/dashboard');
+};
+</script>
 
 <style scoped>
 .pi-eye {

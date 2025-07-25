@@ -92,7 +92,7 @@ function checkActiveRoute(item) {
                 v-if="item.items"
             ></i>
         </a>
-        <router-link
+        <RouterLink
             v-if="item.to && !item.items && item.visible !== false"
             @click="itemClick($event, item, index)"
             :class="[item.class, { 'active-route': checkActiveRoute(item) }]"
@@ -108,7 +108,7 @@ function checkActiveRoute(item) {
                 class="pi pi-fw pi-angle-down layout-submenu-toggler"
                 v-if="item.items"
             ></i>
-        </router-link>
+        </RouterLink>
         <Transition
             v-if="item.items && item.visible !== false"
             name="layout-submenu"

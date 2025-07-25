@@ -53,7 +53,7 @@ import FloatingConfigurator from '@/components/FloatingConfigurator.vue';
                         Not Found</h1>
                     <div class="text-surface-600 dark:text-surface-200 mb-8">Requested resource is
                         not available.</div>
-                    <router-link
+                    <RouterLink
                         to="/"
                         class="w-full flex items-center py-8 border-surface-300 dark:border-surface-500 border-b"
                     >
@@ -71,8 +71,8 @@ import FloatingConfigurator from '@/components/FloatingConfigurator.vue';
                                 class="text-surface-600 dark:text-surface-200 lg:text-xl">Ultricies
                                 mi quis hendrerit dolor.</span>
                         </span>
-                    </router-link>
-                    <router-link
+                    </RouterLink>
+                    <RouterLink
                         to="/"
                         class="w-full flex items-center py-8 border-surface-300 dark:border-surface-500 border-b"
                     >
@@ -90,8 +90,8 @@ import FloatingConfigurator from '@/components/FloatingConfigurator.vue';
                                 class="text-surface-600 dark:text-surface-200 lg:text-xl">Phasellus
                                 faucibus scelerisque eleifend.</span>
                         </span>
-                    </router-link>
-                    <router-link
+                    </RouterLink>
+                    <RouterLink
                         to="/"
                         class="w-full flex items-center mb-8 py-8 border-surface-300 dark:border-surface-500 border-b"
                     >
@@ -108,9 +108,9 @@ import FloatingConfigurator from '@/components/FloatingConfigurator.vue';
                             <span class="text-surface-600 dark:text-surface-200 lg:text-xl">Accumsan
                                 in nisl nisi scelerisque</span>
                         </span>
-                    </router-link>
+                    </RouterLink>
                     <Button
-                        as="router-link"
+                        as="RouterLink"
                         label="Go to Dashboard"
                         to="/"
                     />

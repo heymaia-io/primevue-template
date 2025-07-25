@@ -20,6 +20,7 @@ export const useAuthStore = defineStore('auth', () => {
     const logout = () => {
         isAuthenticated.value = false;
         localStorage.removeItem('isAuthenticated');
+        window.location.reload();
     };
 
     // Initialize on store creation

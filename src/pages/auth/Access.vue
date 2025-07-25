@@ -33,7 +33,7 @@ import FloatingConfigurator from '@/components/FloatingConfigurator.vue';
                         />
                         <div class="col-span-12 mt-8 text-center">
                             <Button
-                                as="router-link"
+                                as="RouterLink"
                                 label="Go to Dashboard"
                                 to="/"
                                 severity="warn"

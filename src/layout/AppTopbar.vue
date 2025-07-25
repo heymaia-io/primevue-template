@@ -1,10 +1,3 @@
-<script setup lang="ts">
-import { useLayout } from '@/layout/composables/layout';
-import AppConfigurator from './AppConfigurator.vue';
-
-const { toggleMenu, toggleDarkMode, isDarkTheme } = useLayout();
-</script>
-
 <template>
     <div class="layout-topbar">
         <div class="layout-topbar-logo-container">
@@ -14,7 +7,7 @@ const { toggleMenu, toggleDarkMode, isDarkTheme } = useLayout();
             >
                 <i class="pi pi-bars"></i>
             </button>
-            <router-link
+            <RouterLink
                 to="/"
                 class="layout-topbar-logo"
             >
@@ -52,7 +45,7 @@ const { toggleMenu, toggleDarkMode, isDarkTheme } = useLayout();
                 </svg>
 
                 <span>SAKAI</span>
-            </router-link>
+            </RouterLink>
         </div>
 
         <div class="layout-topbar-actions">
@@ -99,15 +92,18 @@ const { toggleMenu, toggleDarkMode, isDarkTheme } = useLayout();
                         <i class="pi pi-inbox"></i>
                         <span>Messages</span>
                     </button>
-                    <button
-                        type="button"
-                        class="layout-topbar-action"
-                    >
-                        <i class="pi pi-user"></i>
-                        <span>Profile</span>
-                    </button>
+                    <AppProfilePopover />
                 </div>
             </div>
         </div>
     </div>
 </template>
+
+<script setup lang="ts">
+import { useRouter } from 'vue-router';
+import { useLayout } from '@/layout/composables/layout';
+import AppConfigurator from './AppConfigurator.vue';
+import AppProfilePopover from './AppProfilePopover.vue';
+
+const { toggleMenu, toggleDarkMode, isDarkTheme } = useLayout();
+</script>
