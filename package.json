@@ -1,6 +1,11 @@
 {
     "name": "sakai-vue",
     "version": "4.3.0",
+    "private": true,
+    "type": "module",
+    "author": {
+        "name": "Israel Santiago"
+    },
     "scripts": {
         "dev": "vite",
         "build": "vite build",
