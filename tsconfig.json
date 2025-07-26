@@ -1,31 +1,42 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "useDefineForClassFields": true,
-    "module": "ESNext",
-    "moduleResolution": "bundler",
-    "strict": true,
-    "jsx": "preserve",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
+    "allowJs": true,
+    "baseUrl": "./",
     "esModuleInterop": true,
+    "isolatedModules": true,
+    "jsx": "react",
     "lib": [
-      "ESNext",
-      "DOM"
+      "esnext",
+      "dom",
+      "dom.iterable",
+      "scripthost"
     ],
+    "module": "esnext",
+    "moduleResolution": "Bundler",
+    "noImplicitAny": false,
+    "resolveJsonModule": true,
     "skipLibCheck": true,
-    "noEmit": true,
+    "sourceMap": true,
+    "strict": true,
+    "target": "esnext",
+    "useDefineForClassFields": true,
     "paths": {
       "@/*": [
         "./src/*"
-      ]
+      ],
     }
   },
   "include": [
-    "src/**/*.ts",
+    "./typed-router.d.ts",
     "src/**/*.d.ts",
+    "src/**/*.js",
+    "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.vue"
+  ],
+  "exclude": [
+    "./dist",
+    "./node_modules"
   ],
   "references": [
     {
