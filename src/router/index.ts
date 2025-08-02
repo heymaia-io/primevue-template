@@ -172,12 +172,31 @@ import { routes, handleHotUpdate } from 'vue-router/auto-routes'
 //     }
 // ];
 
-const router = createRouter({
-    history: createWebHistory(),
-    routes
+const protectedRoutes: RouteRecordRaw[] = [];
+const publicRoutes: RouteRecordRaw[] = [];
+
+routes.forEach((route) => {
+    if (route.meta?.requiresAuth) {
+        protectedRoutes.push(route);
+    } else {
+        publicRoutes.push(route);
+    }
 });
 
-console.log(routes);
+const layoutRoute: RouteRecordRaw = {
+    path: '/',
+    component: AppLayout,
+    children: protectedRoutes
+};
+
+const finalRoutes: RouteRecordRaw[] = [layoutRoute, ...publicRoutes];
+
+const router = createRouter({
+    history: createWebHistory(),
+    routes: finalRoutes
+});
+
+console.log(finalRoutes);
 
 
 if (import.meta.hot) { 
@@ -196,7 +215,10 @@ router.beforeEach((to, from, next) => {
     }
 
     if (requiresAuth && !isAuthenticated) {
-        return next('/auth/login');
+        // prevent redirect loop
+        if (to.name !== 'auth-login') {
+            return next({ name: 'auth-login', query: { redirect: to.fullPath } });
+        }
     }
 
     if (to.name === 'auth-login' && isAuthenticated) {

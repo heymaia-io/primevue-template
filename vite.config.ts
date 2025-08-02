@@ -15,7 +15,6 @@ function updateRoute(route: EditableTreeNode) {
     route.meta = {
       ...route.meta,
       requiresAuth: true,
-      layout: 'AppLayout',
     };
   }
 
