@@ -177,6 +177,9 @@ const router = createRouter({
     routes
 });
 
+console.log(routes);
+
+
 if (import.meta.hot) { 
     handleHotUpdate(router) 
 }
@@ -186,6 +189,8 @@ router.beforeEach((to, from, next) => {
     const isAuthenticated = authStore.isAuthenticated;
     const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
 
+    // console.log(to);
+
     if (to.path === '/' && !isAuthenticated) {
         return next('/auth/login');
     }
@@ -194,7 +199,7 @@ router.beforeEach((to, from, next) => {
         return next('/auth/login');
     }
 
-    if (to.name === '/auth/login' && isAuthenticated) {
+    if (to.name === 'auth-login' && isAuthenticated) {
         return next('/dashboard');
     }
 
