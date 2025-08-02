@@ -5,22 +5,42 @@
         "esModuleInterop": true,
         "isolatedModules": true,
         "jsx": "react",
-        "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
-        "module": "nodenext",
-        "moduleResolution": "nodenext",
+        "lib": [
+            "esnext",
+            "dom",
+            "dom.iterable",
+            "scripthost"
+        ],
+        "module": "esnext",
+        "moduleResolution": "Bundler",
         "noImplicitAny": false,
         "resolveJsonModule": true,
         "skipLibCheck": true,
         "sourceMap": true,
         "strict": true,
         "target": "esnext",
+        "types": [
+            "unplugin-vue-router/client"
+        ],
         "useDefineForClassFields": true,
         "paths": {
-            "@/*": ["./src/*"]
+            "@/*": [
+                "./src/*"
+            ]
         }
     },
-    "include": ["./typed-router.d.ts", "src/**/*.d.ts", "src/**/*.js", "src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"],
-    "exclude": ["./dist", "./node_modules"],
+    "include": [
+        "./typed-router.d.ts",
+        "src/**/*.d.ts",
+        "src/**/*.js",
+        "src/**/*.ts",
+        "src/**/*.tsx",
+        "src/**/*.vue"
+    ],
+    "exclude": [
+        "./dist",
+        "./node_modules"
+    ],
     "references": [
         {
             "path": "./tsconfig.node.json"

@@ -441,7 +441,7 @@ function getStatusLabel(status) {
             <div class="flex items-center gap-4">
                 <i class="pi pi-exclamation-triangle !text-3xl" />
                 <span v-if="product">Are you sure you want to delete <b>{{ product.name
-                        }}</b>?</span>
+                }}</b>?</span>
             </div>
             <template #footer>
                 <Button
