@@ -2,7 +2,7 @@
   "compilerOptions": {
     "composite": true,
     "module": "esnext",
-    "moduleResolution": "Bundler",
+    "moduleResolution": "bundler",
     "allowSyntheticDefaultImports": true
   },
   "include": [

@@ -6,13 +6,13 @@
         "isolatedModules": true,
         "jsx": "react",
         "lib": [
-            "esnext",
-            "dom",
             "dom.iterable",
-            "scripthost"
+            "DOM",
+            "esnext",
+            "scripthost",
         ],
         "module": "esnext",
-        "moduleResolution": "Bundler",
+        "moduleResolution": "bundler",
         "noImplicitAny": false,
         "resolveJsonModule": true,
         "skipLibCheck": true,

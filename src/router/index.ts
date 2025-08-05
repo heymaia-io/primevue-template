@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router';
 import AppLayout from '@/layout/AppLayout.vue';
 import useAuthStore from '@/stores/auth';
-import { routes, handleHotUpdate } from 'vue-router/auto-routes'
+import { routes, handleHotUpdate } from 'vue-router/auto-routes';
 
 // const routes: Array<RouteRecordRaw> = [
 //     {
@@ -172,35 +172,16 @@ import { routes, handleHotUpdate } from 'vue-router/auto-routes'
 //     }
 // ];
 
-const protectedRoutes: RouteRecordRaw[] = [];
-const publicRoutes: RouteRecordRaw[] = [];
-
-routes.forEach((route) => {
-    if (route.meta?.requiresAuth) {
-        protectedRoutes.push(route);
-    } else {
-        publicRoutes.push(route);
-    }
-});
-
-const layoutRoute: RouteRecordRaw = {
-    path: '/',
-    component: AppLayout,
-    children: protectedRoutes
-};
-
-const finalRoutes: RouteRecordRaw[] = [layoutRoute, ...publicRoutes];
-
 const router = createRouter({
     history: createWebHistory(),
-    routes: finalRoutes
+    routes: routes
 });
 
-console.log(finalRoutes);
+console.log(routes);
 
 
-if (import.meta.hot) { 
-    handleHotUpdate(router) 
+if (import.meta.hot) {
+    handleHotUpdate(router);
 }
 
 router.beforeEach((to, from, next) => {
