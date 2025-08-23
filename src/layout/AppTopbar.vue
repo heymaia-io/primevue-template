@@ -100,10 +100,11 @@
 </template>
 
 <script setup lang="ts">
-import { useRouter } from 'vue-router';
-import { useLayout } from '@/layout/composables/layout';
+// import { useRouter } from 'vue-router';
+// import { useLayout } from '@/layout/composables/layout'; // TODO: remove this
 import AppConfigurator from './AppConfigurator.vue';
 import AppProfilePopover from './AppProfilePopover.vue';
+import { useAppStore } from '@/stores';
 
-const { toggleMenu, toggleDarkMode, isDarkTheme } = useLayout();
+const { toggleMenu, toggleDarkMode, isDarkTheme } = useAppStore();
 </script>

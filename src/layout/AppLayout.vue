@@ -18,17 +18,18 @@
 
 
 <script setup lang="ts">
-import { useLayout } from '@/layout/composables/layout';
+// import { useLayout } from '@/layout/composables/layout'; // TODO: remove this
 import { computed, ref, watch } from 'vue';
 import AppFooter from './AppFooter.vue';
 import AppSidebar from './AppSidebar.vue';
 import AppTopbar from './AppTopbar.vue';
+import { useAppStore } from '@/stores';
 
 defineOptions({
   name: 'AppLayout',
 });
 
-const { layoutConfig, layoutState, isSidebarActive } = useLayout();
+const { layoutConfig, layoutState, isSidebarActive } = useAppStore();
 
 const outsideClickListener = ref(null);
 
