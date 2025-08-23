@@ -9,7 +9,7 @@ import VueRouter from 'unplugin-vue-router/vite';
 /**
  * Processes and updates route configurations during build time.
  * This function is called for each route in your application.
- * 
+ *
  * @param route - The route node being processed
  * @returns The processed route with updated configurations
  */
@@ -25,11 +25,12 @@ function updateRoute(route: EditableTreeNode) {
 
   // Use only the short name (without group prefix) for cleaner route names
   route.name = shortName;
+  const layout = requiresAuth ? 'AppLayout' : 'AuthLayout';
 
   // Add authentication requirement to meta for routes that need it
   // Skip catch-all routes as they might handle their own authentication
   if (requiresAuth && !isCatchAllRoute) {
-    route.addToMeta({ requiresAuth });
+    route.addToMeta({ requiresAuth, layout });
   }
 
   // Process all child routes recursively
@@ -43,14 +44,14 @@ function updateRoute(route: EditableTreeNode) {
   // This helps in understanding the route structure and debugging routing issues
   console.log({
     // alias: route.alias,  // Uncomment to see route aliases
-    children: route.children?.length,  // Number of child routes
-    component: route.component,        // Component associated with the route
-    fullPath: route.fullPath,          // Full path including parent routes
-    meta: route.meta,                  // Route metadata (includes requiresAuth)
-    name: route.name,                  // Route name (without group prefix)
-    parent: route.parent?.name,        // Parent route name (for nested routes)
-    path: route.path,                  // Route path pattern
-    shortName,                         // Short name (without group prefix)
+    children: route.children?.length, // Number of child routes
+    component: route.component, // Component associated with the route
+    fullPath: route.fullPath, // Full path including parent routes
+    meta: route.meta, // Route metadata (includes requiresAuth)
+    name: route.name, // Route name (without group prefix)
+    parent: route.parent?.name, // Parent route name (for nested routes)
+    path: route.path, // Route path pattern
+    shortName, // Short name (without group prefix)
   });
 
   return route;
@@ -70,7 +71,7 @@ export default defineConfig({
       /**
        * Custom route name generator for Vue Router
        * Transforms file-based route names into URL-friendly format
-       * 
+       *
        * Example transformations:
        * - `pages/(private)/dashboard/index.vue` -> `private/dashboard`
        * - `pages/user/profile.vue` -> `user-profile`
@@ -97,8 +98,7 @@ export default defineConfig({
           // Add hyphens between camelCase (e.g., 'UserProfile' -> 'User-Profile')
           .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
           // Convert to lowercase
-          .toLowerCase()
-          }`;
+          .toLowerCase()}`;
 
         // Debug log (uncomment when needed)
         // console.log({ pascalCaseName, fileBasedName, finalName, groupPrefix });

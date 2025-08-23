@@ -3,13 +3,13 @@
     class="layout-wrapper"
     :class="containerClass"
   >
-    <app-topbar></app-topbar>
-    <app-sidebar></app-sidebar>
+    <AppTopbar />
+    <AppSidebar />
     <div class="layout-main-container">
       <div class="layout-main">
-        <router-view></router-view>
+        <RouterView />
       </div>
-      <app-footer></app-footer>
+      <AppFooter />
     </div>
     <div class="layout-mask animate-fadein"></div>
   </div>
@@ -23,6 +23,10 @@ import { computed, ref, watch } from 'vue';
 import AppFooter from './AppFooter.vue';
 import AppSidebar from './AppSidebar.vue';
 import AppTopbar from './AppTopbar.vue';
+
+defineOptions({
+  name: 'AppLayout',
+});
 
 const { layoutConfig, layoutState, isSidebarActive } = useLayout();
 

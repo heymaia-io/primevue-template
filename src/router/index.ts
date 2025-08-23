@@ -1,3 +1,4 @@
+import { useAppStore } from '@/stores';
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router';
 import AppLayout from '@/layout/AppLayout.vue';
 import useAuthStore from '@/stores/auth';
@@ -173,40 +174,42 @@ import { routes, handleHotUpdate } from 'vue-router/auto-routes';
 // ];
 
 const router = createRouter({
-    history: createWebHistory(),
-    routes: routes
+  history: createWebHistory(),
+  routes: routes,
 });
 
 console.log(routes);
 
-
 if (import.meta.hot) {
-    handleHotUpdate(router);
+  handleHotUpdate(router);
 }
 
 router.beforeEach((to, from, next) => {
-    const authStore = useAuthStore();
-    const isAuthenticated = authStore.isAuthenticated;
-    const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+  const store = useAppStore();
+  const authStore = useAuthStore();
+  const isAuthenticated = authStore.isAuthenticated;
+  const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
 
-    // console.log(to);
+  console.log('to:', to);
 
-    if (to.path === '/' && !isAuthenticated) {
-        return next('/auth/login');
+  store.setMainLayout((to.meta.layout as string) || 'AuthLayout');
+
+  if (to.path === '/' && !isAuthenticated) {
+    return next('/auth/login');
+  }
+
+  if (requiresAuth && !isAuthenticated) {
+    // prevent redirect loop
+    if (to.name !== 'auth-login') {
+      return next({ name: 'auth-login', query: { redirect: to.fullPath } });
     }
+  }
 
-    if (requiresAuth && !isAuthenticated) {
-        // prevent redirect loop
-        if (to.name !== 'auth-login') {
-            return next({ name: 'auth-login', query: { redirect: to.fullPath } });
-        }
-    }
+  if (to.name === 'auth-login' && isAuthenticated) {
+    return next('/dashboard');
+  }
 
-    if (to.name === 'auth-login' && isAuthenticated) {
-        return next('/dashboard');
-    }
-
-    next();
+  next();
 });
 
 export default router;
