@@ -1,7 +1,3 @@
-<script setup lang="ts">
-import FloatingConfigurator from '@/components/FloatingConfigurator.vue';
-</script>
-
 <template>
   <FloatingConfigurator />
   <div class="flex items-center justify-center min-h-screen overflow-hidden">
@@ -110,10 +106,14 @@ import FloatingConfigurator from '@/components/FloatingConfigurator.vue';
           <Button
             as="RouterLink"
             label="Go to Dashboard"
-            to="/"
+            to="/dashboard"
           />
         </div>
       </div>
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import FloatingConfigurator from '@/components/FloatingConfigurator.vue';
+</script>
